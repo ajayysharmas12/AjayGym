@@ -20,13 +20,14 @@ const Register = () => {
         password,
         username
       );
-      var session = await account.createEmailSession(email, password);
-      console.log(response);
+      // console.log(response);
       const loggedIn = await account.createEmailPasswordSession(
         email,
         password
       );
-      toast.success("Warrior of Fitness Get Ready 🏃 !!", {
+      // console.log(loggedIn);
+      // console.log(await account.get());
+      toast.success("Lets go 🏃 !!", {
         position: "top-right",
         autoClose: 2800,
         hideProgressBar: false,
@@ -39,9 +40,9 @@ const Register = () => {
       });
       setTimeout(() => navigate("/home"), 3200);
     } catch (error) {
-      toast.info("Password needs minimum 8 characters and must be unique", {
+      toast.error("Error !!", {
         position: "top-right",
-        autoClose: 8000,
+        autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -63,7 +64,18 @@ const Register = () => {
       );
       console.log(response);
     } catch (error) {
-      console.log(error);
+      toast.error("Failed to sign in with Google", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
+      console.log("Google sign-in error:", error);
     }
   };
 
@@ -78,8 +90,8 @@ const Register = () => {
         style={{
           backgroundImage:
             "url(https://images.unsplash.com/photo-1534258936925-c58bed479fcb?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
-          width: "100vw",
-          height: "100vh",
+          width: "screen",
+          height: "screen",
         }}
       >
         <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">

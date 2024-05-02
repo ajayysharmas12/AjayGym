@@ -7,9 +7,7 @@ import { homeContext } from "../Layout/Layout";
 function WorkoutItems({ getData }) {
   const [searchParams, setSearchParams] = useState({
     Muscles: "",
-    WorkOut: "",
-    Equipment: "",
-    Intensity_Level: "",
+    quantity: "",
   });
   const { toast, ToastContainer, Bounce, ContentLoader } =
     useContext(homeContext);
@@ -30,16 +28,12 @@ function WorkoutItems({ getData }) {
 
     setLoading(true);
 
-    const url = `https://work-out-api1.p.rapidapi.com/search?Muscles=${
-      searchParams.Muscles
-    }&WorkOut=${searchParams.WorkOut.replace(/\s/g, "%20")}&Equipment=${
-      searchParams.Equipment
-    }&Intensity_Level=${searchParams.Intensity_Level}`;
+    const url = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${searchParams.Muscles}?limit=${searchParams.quantity}`;
     const options = {
       method: "GET",
       headers: {
         "X-RapidAPI-Key": "fd5f052ca0msh17df6414e90e622p12a46djsndd703d160c9c",
-        "X-RapidAPI-Host": "work-out-api1.p.rapidapi.com",
+        "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
       },
     };
 
@@ -102,26 +96,10 @@ function WorkoutItems({ getData }) {
               className="border rounded-md p-2 m-2 w-full sm:w-auto"
             />
             <input
-              type="text"
-              name="WorkOut"
-              placeholder="Workout name"
-              value={searchParams.WorkOut}
-              onChange={handleInputChange}
-              className="border rounded-md p-2 m-2 w-full sm:w-auto"
-            />
-            <input
-              type="text"
-              name="Equipment"
-              placeholder="Equipment"
-              value={searchParams.Equipment}
-              onChange={handleInputChange}
-              className="border rounded-md p-2 m-2 w-full sm:w-auto"
-            />
-            <input
-              type="text"
-              name="Intensity_Level"
-              placeholder="Intensity Level"
-              value={searchParams.Intensity_Level}
+              type="number"
+              name="quantity"
+              placeholder="Search Quantity"
+              value={searchParams.quantity}
               onChange={handleInputChange}
               className="border rounded-md p-2 m-2 w-full sm:w-auto"
             />
