@@ -11,7 +11,7 @@ function WorkoutItems({ getData }) {
   });
   const { toast, ToastContainer, Bounce, ContentLoader } =
     useContext(homeContext);
-  const [formData, setFormData] = useState([]);
+  const [formData, setFormData] = useState([]); // Initialize formData as an empty array
   const [loading, setLoading] = useState(false);
 
   const handleInputChange = (e) => {
@@ -75,10 +75,10 @@ function WorkoutItems({ getData }) {
   const clearInputFields = () => {
     setSearchParams({
       Muscles: "",
-      WorkOut: "",
-      Equipment: "",
-      Intensity_Level: "",
+      quantity: "",
     });
+
+    setFormData([]);
   };
 
   return (
@@ -89,6 +89,7 @@ function WorkoutItems({ getData }) {
           <form onSubmit={handleSearch} className="items-center">
             <input
               type="text"
+              required
               name="Muscles"
               placeholder="Muscle Group"
               value={searchParams.Muscles}
@@ -97,6 +98,7 @@ function WorkoutItems({ getData }) {
             />
             <input
               type="number"
+              required
               name="quantity"
               placeholder="Search Quantity"
               value={searchParams.quantity}
@@ -125,14 +127,14 @@ function WorkoutItems({ getData }) {
         </div>
         <div>
           {loading ? (
-            <div div className="flex float-right mr-24">
-              {ContentLoader()}
-            </div>
+            <div className="flex float-right mr-24">{ContentLoader()}</div>
           ) : (
             <div className="grid grid-cols-2 gap-4 p-2 m-4 mt-8">
-              {formData.map((item) => (
-                <DisplayWorkouts key={nanoid()} item={item} />
-              ))}
+              {/* Check if formData is an array before mapping */}
+              {Array.isArray(formData) &&
+                formData.map((item) => (
+                  <DisplayWorkouts key={nanoid()} item={item} />
+                ))}
             </div>
           )}
         </div>

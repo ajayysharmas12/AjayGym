@@ -32,55 +32,29 @@ function Workouts() {
               <nav className="-mx-3 space-y-6 ">
                 <div className="space-y-3 ">
                   <label className="px-3 text-xs font-semibold uppercase text-white">
-                    How to use the search
+                    <p className="w-full">How to use the Search -</p>
+                    <p className="w-3/5">
+                      Quantity means how many types of exercises you want for a
+                      muscle group
+                    </p>
                   </label>
+
                   <a
-                    className="flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-50 hover:text-gray-700"
+                    className="flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
                     href="#"
                   >
                     <span className="mx-2 text-sm font-medium">
-                      Muscle Group - <br /> <h4 className="w-full">Biceps</h4>
-                      <h4 className="w-full">Triceps</h4>
-                      <h4 className="w-full">Chest</h4>
+                      Muscle Group - <br />
                       <h4 className="w-full">Back</h4>
-                      <h4 className="w-full">Legs</h4>
-                      <h4 className="w-full">Abs</h4>
-                      <h4 className="w-full">Stretching</h4>
-                      <h4 className="w-full">Warm Up</h4>
-                      <h4 className="w-full">Lats</h4>
-                      <h4 className="w-full">Hamstring</h4>
-                      <h4 className="w-full">Calves</h4>
-                      <h4 className="w-full">Quadriceps</h4>
-                      <h4 className="w-full">Trapezius</h4>
+                      <h4 className="w-full">Cardio</h4>
+                      <h4 className="w-full">Chest</h4>
+                      <h4 className="w-full">Lower arms</h4>
+                      <h4 className="w-full">Lower legs</h4>
+                      <h4 className="w-full">Neck</h4>
                       <h4 className="w-full">Shoulders</h4>
-                      <h4 className="w-full">Glutes</h4>
-                    </span>
-                  </a>
-                  <a
-                    className="flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
-                    href="#"
-                  >
-                    <span className="mx-2 text-sm font-medium">
-                      Equipment - <br />
-                      <h4 className="w-full">Barbell</h4>
-                      <h4 className="w-full">Dumbbells</h4>
-                      <h4 className="w-full">EZ-bar</h4>
-                      <h4 className="w-full">kettlebell</h4>
-                      <h4 className="w-full">Chest press</h4>
-                      <h4 className="w-full">machine</h4>
-                      <h4 className="w-full">and much more …</h4>
-                      <h4 className="w-full">It can also be empty</h4>
-                    </span>
-                  </a>
-                </div>
-                <div className="space-y-3 ">
-                  <a
-                    className="flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
-                    href="#"
-                  >
-                    <span className="mx-2 text-sm font-medium">
-                      Intensity - <br />
-                      Beginner Intermediate Expert
+                      <h4 className="w-full">Upper arms</h4>
+                      <h4 className="w-full">Upper legs</h4>
+                      <h4 className="w-full">Waist</h4>
                     </span>
                   </a>
                 </div>
@@ -91,7 +65,7 @@ function Workouts() {
         <div
           className="flex"
           style={{
-            height: formData.length > 0 ? "full" : "screen",
+            height: formData.length > 0 ? "100vh" : "auto", // Corrected height values
             width: "100%",
             backgroundAttachment: "fixed",
             backgroundSize: "cover",
