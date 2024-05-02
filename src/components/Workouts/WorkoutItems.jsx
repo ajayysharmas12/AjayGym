@@ -1,0 +1,167 @@
+import React, { useContext, useEffect, useState } from "react";
+import { nanoid } from "nanoid";
+import DisplayWorkouts from "./DisplayWorkouts";
+import { FaTrash } from "react-icons/fa";
+import { homeContext } from "../Layout/Layout";
+
+function WorkoutItems({ getData }) {
+  const [searchParams, setSearchParams] = useState({
+    Muscles: "",
+    WorkOut: "",
+    Equipment: "",
+    Intensity_Level: "",
+  });
+  const { toast, ToastContainer, Bounce, ContentLoader } =
+    useContext(homeContext);
+  const [formData, setFormData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setSearchParams((prevParams) => {
+      return { ...prevParams, [name]: value };
+    });
+  };
+
+  const handleSearch = async (e) => {
+    if (e) {
+      e.preventDefault();
+    }
+
+    setLoading(true);
+
+    const url = `https://work-out-api1.p.rapidapi.com/search?Muscles=${
+      searchParams.Muscles
+    }&WorkOut=${searchParams.WorkOut.replace(/\s/g, "%20")}&Equipment=${
+      searchParams.Equipment
+    }&Intensity_Level=${searchParams.Intensity_Level}`;
+    const options = {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": "fd5f052ca0msh17df6414e90e622p12a46djsndd703d160c9c",
+        "X-RapidAPI-Host": "work-out-api1.p.rapidapi.com",
+      },
+    };
+
+    try {
+      const response = await fetch(url, options);
+      const result = await response.text();
+      const jsonData = JSON.parse(result);
+      setFormData(jsonData);
+      toast.success("Workouts found!! ", {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
+      getData(e);
+    } catch (error) {
+      toast.error("No Data found!! ", {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const clearInputFields = () => {
+    setSearchParams({
+      Muscles: "",
+      WorkOut: "",
+      Equipment: "",
+      Intensity_Level: "",
+    });
+  };
+
+  return (
+    <>
+      <div className="p-5 ">
+        <h1 className="text-2xl text-white font-bold mb-4">Workouts</h1>
+        <div className="flex flex-wrap space-x-4 mb-4 ">
+          <form onSubmit={handleSearch} className="items-center">
+            <input
+              type="text"
+              name="Muscles"
+              placeholder="Muscle Group"
+              value={searchParams.Muscles}
+              onChange={handleInputChange}
+              className="border rounded-md p-2 m-2 w-full sm:w-auto"
+            />
+            <input
+              type="text"
+              name="WorkOut"
+              placeholder="Workout name"
+              value={searchParams.WorkOut}
+              onChange={handleInputChange}
+              className="border rounded-md p-2 m-2 w-full sm:w-auto"
+            />
+            <input
+              type="text"
+              name="Equipment"
+              placeholder="Equipment"
+              value={searchParams.Equipment}
+              onChange={handleInputChange}
+              className="border rounded-md p-2 m-2 w-full sm:w-auto"
+            />
+            <input
+              type="text"
+              name="Intensity_Level"
+              placeholder="Intensity Level"
+              value={searchParams.Intensity_Level}
+              onChange={handleInputChange}
+              className="border rounded-md p-2 m-2 w-full sm:w-auto"
+            />
+            <div className="flex items-center">
+              <button
+                type="submit"
+                className="bg-blue-500 text-white rounded-xl p-2 px-4 w-full sm:w-auto"
+              >
+                Search
+              </button>
+              <button
+                type="button"
+                className="ml-2 p-2 bg-slate-800 rounded-xl text-white flex items-center"
+                onClick={clearInputFields}
+              >
+                <span>Clear</span>
+                <span className="ml-1">
+                  <FaTrash />
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
+        <div>
+          {loading ? (
+            <div div className="flex float-right mr-24">
+              {ContentLoader()}
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 gap-4 p-2 m-4 mt-8">
+              {formData.map((item) => (
+                <DisplayWorkouts key={nanoid()} item={item} />
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+      <ToastContainer />
+    </>
+  );
+}
+
+export default WorkoutItems;
