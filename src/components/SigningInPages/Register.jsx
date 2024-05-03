@@ -11,7 +11,6 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const { toast } = useContext(NotificationContext);
   const navigate = useNavigate();
-
   const handleRegister = async () => {
     try {
       const response = await account.create(
@@ -94,7 +93,7 @@ const Register = () => {
           backgroundImage:
             "url(https://images.unsplash.com/photo-1534258936925-c58bed479fcb?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
           width: "screen",
-          height: "100vh",
+          height: "100%",
         }}
       >
         <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
