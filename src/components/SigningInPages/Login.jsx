@@ -12,6 +12,9 @@ function Login() {
 
   const handleLogin = async () => {
     try {
+      // Attempt to delete existing session
+      await account.deleteSession("current"); // "current" is used to delete the current session
+
       // Attempt login
       const loggedIn = await account.createEmailPasswordSession(
         email,
