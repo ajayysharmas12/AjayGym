@@ -26,7 +26,9 @@ const Register = () => {
         password
       );
       console.log(loggedIn);
-      await account.createVerification("http://localhost:5173/verification");
+      await account.createVerification(
+        "https://fitness-app-souptik018.vercel.app/verification"
+      );
 
       toast.success("Verify your email first 🏃 !!", {
         position: "top-right",

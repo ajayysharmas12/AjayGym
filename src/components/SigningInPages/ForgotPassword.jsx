@@ -8,7 +8,7 @@ function ForgotPassword() {
     try {
       const response = await account.createRecovery(
         email,
-        "http://localhost:5173/resetpassword"
+        "https://fitness-app-souptik018.vercel.app/resetpassword"
       );
       console.log(response);
     } catch (error) {
