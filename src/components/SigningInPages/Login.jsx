@@ -4,6 +4,10 @@ import { account } from "../../appwrite/config";
 import { NotificationContext } from "./LayoutLogin";
 import { Bounce } from "react-toastify";
 
+//Notes
+// google login - working successfully
+// local login - working successfully
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
