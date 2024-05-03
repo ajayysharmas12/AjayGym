@@ -99,7 +99,7 @@ const Register = () => {
         <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
           <div
             style={{ boxShadow: "rgba(255, 255, 255, 1.35) 0px 0px 14px" }}
-            className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md mt-24 rounded-xl p-4"
+            className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md rounded-xl p-4"
           >
             <h2 className="text-center text-2xl font-bold leading-tight text-neutral-200">
               Sign up to create an account
