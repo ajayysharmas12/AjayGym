@@ -1,55 +1,21 @@
-import React, { useContext, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import { account } from "../../appwrite/config";
-import { NotificationContext } from "./LayoutLogin";
-import { Bounce } from "react-toastify";
-
-//Notes
-// google login - working successfully
-// local login - working successfully
-
-function Login() {
+import { NavLink } from "react-router-dom";
+function ForgotPassword() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-  const { toast, ToastContainer } = useContext(NotificationContext);
-
-  const handleLogin = async () => {
+  const handleResetPassword = async (e) => {
+    e.preventDefault();
     try {
-      // Attempt login
-      const loggedIn = await account.createEmailPasswordSession(
+      const response = await account.createRecovery(
         email,
-        password
+        "http://localhost:5173/resetpassword"
       );
-      toast.success("Get In Quickly 🏃 !!", {
-        position: "top-right",
-        autoClose: 1800,
-        hideProgressBar: false,
-        closeOnClick: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        transition: Bounce,
-      });
-      console.log(account.get());
-      setTimeout(() => navigate("/home"), 2800);
+      console.log(response);
     } catch (error) {
-      console.error("Login error:", error);
-      toast.error("🦄 User Not Registered!", {
-        position: "top-right",
-        autoClose: 1800,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Bounce,
-      });
-      navigate("/login");
+      console.log(error);
     }
+    setEmail("");
   };
-
   const signInWithGoogle = async () => {
     try {
       const response = await account.createOAuth2Session(
@@ -59,60 +25,71 @@ function Login() {
       );
       console.log(response);
     } catch (error) {
-      console.log(error);
+      toast.error("Failed to sign in with Google", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
+      console.log("Google sign-in error:", error);
     }
   };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    handleLogin();
-    console.log("Email:", email);
-  };
-
   return (
     <>
-      <section
+      <div
+        className="w-full"
         style={{
-          height: "100lvh",
-          width: "100vw",
-          backgroundImage:
-            "url(https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+          height: "100vh",
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundAttachment: "fixed",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundImage: `url(https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2120&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)`,
         }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2">
-          <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24 mt-18">
+        <div className="grid grid-cols-1 lg:grid-cols-2 mb-24">
+          <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24 ">
             <div
               style={{
-                boxShadow: "rgba(200, 200, 200, 1.0) 0px 0px 6px",
+                boxShadow: "rgba(250, 250, 200, 1.0) 0px 0px 18px",
                 borderRadius: "10px",
               }}
-              className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md p-4"
+              className=" xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md p-4 "
             >
-              <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl">
-                Sign in
+              <h2 className="text-3xl font-bold leading-tight text-slate-800 sm:text-4xl">
+                Forgot Password 😁
               </h2>
-              <p className="mt-2 text-sm text-gray-400">
-                Don&#x27;t have an account?
+              <p className="mt-2 text-sm text-gray-600">
+                Chill... and take a peaceful breath...{" "}
                 <NavLink
                   to="/"
                   title=""
                   className="font-medium text-gray-200 transition-all duration-200 hover:underline"
                 >
-                  Create a free account
+                  Back to Sign in
                 </NavLink>
               </p>
-              <form onSubmit={handleSubmit} className="mt-8">
+              <form className="mt-8">
                 <div className="space-y-5">
                   <div>
                     <label
                       htmlFor=""
-                      className="text-base font-medium text-gray-200"
+                      className="text-base font-medium text-gray-600"
                     >
                       Email address
                     </label>
                     <div className="mt-2">
                       <input
-                        className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none  text-white focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="flex h-10 w-full rounded-md border border-gray-500 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none  text-black focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                         type="email"
                         required
                         onChange={(e) => setEmail(e.target.value)}
@@ -122,26 +99,12 @@ function Login() {
                     </div>
                   </div>
                   <div>
-                    <div className="mt-2">
-                      <input
-                        className="flex h-10 w-full  text-white rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                        type="password"
-                        placeholder="Password"
-                        onChange={(e) => setPassword(e.target.value)}
-                        value={password}
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <p className="text-slate-400 mt-2 mb-2 float-right">
-                      <NavLink to="/forgotPassword"> Forgot Password</NavLink>
-                    </p>
                     <button
                       type="submit"
+                      onClick={(e) => handleResetPassword(e)}
                       className="inline-flex w-full items-center justify-center rounded-md bg-gray-900 px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-neutral-600"
                     >
-                      Get started
+                      Recover Password
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -160,8 +123,8 @@ function Login() {
                     </button>
                   </div>
                 </div>
-                <hr className="my-5" />
-                <p className="text-center text-sm text-gray-200 mt-4">OR</p>
+                <hr className="my-5 border-slate-400" />
+                <p className="text-center text-sm text-gray-800 mt-4">OR</p>
               </form>
               <div className="mt-3 space-y-3">
                 <button
@@ -201,10 +164,9 @@ function Login() {
             </div>
           </div>
         </div>
-      </section>
-      <ToastContainer />
+      </div>
     </>
   );
 }
 
-export default Login;
+export default ForgotPassword;

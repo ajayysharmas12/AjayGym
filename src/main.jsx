@@ -29,6 +29,9 @@ import FitnessDataLayout from "./components/Navbar/FitnessData/FitnessDataLayout
 import FitnessDetails from "./components/Navbar/FitnessData/FitnessDetails.jsx";
 import ViewFitnessDetails from "./components/Navbar/FitnessData/ViewFitnessDetails.jsx";
 import Verify from "./components/SigningInPages/Verify.jsx";
+import ForgotPassword from "./components/SigningInPages/ForgotPassword.jsx";
+import ResetPassword from "./components/SigningInPages/ResetPassword.jsx";
+import LoginLinkPage from "./components/SigningInPages/LoginLinkPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -40,8 +43,20 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/Verify",
+    path: "/resetpassword",
+    element: <ResetPassword />,
+  },
+  {
+    path: "/loginLink",
+    element: <LoginLinkPage />,
+  },
+  {
+    path: "/verification",
     element: <Verify />,
+  },
+  {
+    path: "/forgotPassword",
+    element: <ForgotPassword />,
   },
   {
     path: "/home",

@@ -13,6 +13,27 @@ function Homepage() {
     setHomeAccountName(accountName);
     console.log(accountName);
   };
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get("userId");
+    const secret = urlParams.get("secret");
+
+    if (userId && secret) {
+      verifyAccount(userId, secret);
+    }
+  }, []); // Only run once on component mount
+
+  const verifyAccount = async (userId, secret) => {
+    try {
+      await account.updateVerification(userId, secret);
+      console.log("Account verified successfully");
+      navigate("/home");
+    } catch (error) {
+      console.log("Verification error:", error);
+      // Handle verification error, e.g., display error message to the user
+    }
+  };
   useEffect(() => {
     checkAccountName();
     console.log("name of account ", accountName);

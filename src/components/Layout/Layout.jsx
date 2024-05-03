@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { account } from "../../appwrite/config";
 import ContentLoader from "./ContentLoader";
 import Loader from "./Loader";
+
 export const homeContext = createContext({
   toast,
   ToastContainer,
@@ -15,25 +16,33 @@ export const homeContext = createContext({
   ContentLoader,
   setaccountName: () => {},
 });
+
 function Layout() {
-  const navigate = useNavigate();
   const [accountName, setaccountName] = useState();
   const [emailName, setEmailName] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    isLoggedIn();
+  }, []);
+
+  useEffect(() => {
+    console.log(accountName);
+    console.log(emailName);
+    isLoggedIn();
+  }, [accountName, emailName]);
+
   const isLoggedIn = async () => {
     try {
-      const signedINTOaccount = await account.get("current");
-      setaccountName(signedINTOaccount.name);
-      setEmailName(signedINTOaccount.email);
-    } catch (e) {
-      console.log(e);
-      console.log("not logged in");
+      const signedIntoAccount = await account.get("current");
+      setaccountName(signedIntoAccount.name);
+      setEmailName(signedIntoAccount.email);
+    } catch (error) {
+      console.log("Authentication error:", error);
       navigate("/login");
     }
   };
-  useEffect(() => {
-    isLoggedIn();
-  });
-  console.log(accountName);
+
   return (
     <homeContext.Provider
       value={{
@@ -43,7 +52,7 @@ function Layout() {
         Loader,
         ContentLoader,
         emailName,
-        setaccountName: () => {},
+        setaccountName,
         accountName,
         isLoggedIn,
       }}

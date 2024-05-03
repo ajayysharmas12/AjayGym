@@ -14,7 +14,10 @@ function Navbar() {
     Loader,
   } = useContext(homeContext);
   const navigate = useNavigate();
-
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
   useEffect(() => {
     isLoggedIn();
   }, []);
@@ -156,12 +159,43 @@ function Navbar() {
                 <line x1="4" y1="18" x2="20" y2="18"></line>
               </svg>
             </div>
-            <button
-              type="button"
-              className="rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-black hover:bg-neutral-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-            >
-              {accountName}
-            </button>
+
+            {/* Profile Dropdown */}
+            <div className="relative inline-block text-left">
+              <button
+                onClick={toggleDropdown}
+                type="button"
+                className="rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-black hover:bg-neutral-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+              >
+                {accountName}
+              </button>
+
+              {dropdownOpen && (
+                <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                  <div
+                    className="py-1"
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="options-menu"
+                  >
+                    <NavLink
+                      to="/profile"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                      role="menuitem"
+                    >
+                      Profile
+                    </NavLink>
+                    <NavLink
+                      to="/settings"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                      role="menuitem"
+                    >
+                      Settings
+                    </NavLink>
+                  </div>
+                </div>
+              )}
+            </div>
             <button
               type="button"
               onClick={() => handleLogout()}
