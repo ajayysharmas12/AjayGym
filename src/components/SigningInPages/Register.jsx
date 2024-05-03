@@ -12,6 +12,10 @@ const Register = () => {
   const { toast, ToastContainer } = useContext(NotificationContext);
   const navigate = useNavigate();
 
+  // notes
+  // 1. local login - working successfully
+  // 2. google sign in - working successfully
+
   const handleRegister = async () => {
     try {
       const response = await account.create(

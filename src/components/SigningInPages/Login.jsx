@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { account } from "../../appwrite/config";
 import { NotificationContext } from "./LayoutLogin";
@@ -12,9 +12,6 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      // Attempt to delete existing session
-      await account.deleteSession("current"); // "current" is used to delete the current session
-
       // Attempt login
       const loggedIn = await account.createEmailPasswordSession(
         email,
@@ -25,12 +22,12 @@ function Login() {
         autoClose: 1800,
         hideProgressBar: false,
         closeOnClick: true,
-        // pauseOnHover: true,
         draggable: true,
         progress: undefined,
         theme: "dark",
         transition: Bounce,
       });
+      console.log(account.get());
       setTimeout(() => navigate("/home"), 2800);
     } catch (error) {
       console.error("Login error:", error);
@@ -62,11 +59,12 @@ function Login() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     handleLogin();
     console.log("Email:", email);
   };
+
   return (
     <>
       <section
@@ -121,23 +119,6 @@ function Login() {
                     </div>
                   </div>
                   <div>
-                    {/* <div className="flex items-center justify-between">
-                      <label
-                        htmlFor=""
-                        className="text-base font-medium text-gray-200"
-                      >
-                        {" "}
-                        Password{" "}
-                      </label>
-                      <a
-                        href="#"
-                        title=""
-                        className="text-sm font-semibold text-white hover:underline"
-                      >
-                        {" "}
-                        Forgot password?{" "}
-                      </a>
-                    </div> */}
                     <div className="mt-2">
                       <input
                         className="flex h-10 w-full  text-white rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
