@@ -151,7 +151,7 @@ function Login() {
                     </div>
                   </div>
                   <div>
-                    <p className="text-slate-400 mt-2 mb-2 float-right">
+                    <p className="text-slate-200 mt-2 mb-2 float-right">
                       <NavLink to="/forgotPassword"> Forgot Password</NavLink>
                     </p>
                     <button
