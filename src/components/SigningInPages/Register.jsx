@@ -85,8 +85,8 @@ const Register = () => {
     try {
       const response = await account.createOAuth2Session(
         "github",
-        "http://localhost:5173/home",
-        "http://localhost:5173/fail"
+        "https://fitness-app-souptik018.vercel.app/home",
+        "https://fitness-app-souptik018.vercel.app/fail"
       );
 
       console.log(response);
