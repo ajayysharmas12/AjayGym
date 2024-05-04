@@ -4,7 +4,7 @@ import { homeContext } from "../Layout/Layout";
 import { NavLink, useNavigate } from "react-router-dom";
 
 function ResetPassword() {
-  const { toast, Bounce } = useContext(homeContext);
+  const { toast, Bounce, ToastContainer } = useContext(homeContext);
   const [password, setPassword] = useState({
     newPassword: "",
     confirmPassword: "",
@@ -26,7 +26,7 @@ function ResetPassword() {
       );
       toast.success("Password reset successfully", {
         position: "top-right",
-        autoClose: 1000,
+        autoClose: 1400,
         hideProgressBar: false,
         closeOnClick: true,
         draggable: true,
@@ -34,7 +34,7 @@ function ResetPassword() {
         theme: "colored",
         transition: Bounce,
       });
-      setTimeout(() => navigate("/login"), 1400);
+      setTimeout(() => navigate("/login"), 2400);
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -155,6 +155,7 @@ function ResetPassword() {
               </form>
             </div>
           </div>
+          <ToastContainer />
         </div>
       </div>
     </>

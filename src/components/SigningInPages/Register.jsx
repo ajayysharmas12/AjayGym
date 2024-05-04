@@ -81,7 +81,19 @@ const Register = () => {
       console.log("Google sign-in error:", error);
     }
   };
+  const signInWithgithub = async () => {
+    try {
+      const response = await account.createOAuth2Session(
+        "github",
+        "http://localhost:5173/home",
+        "http://localhost:5173/fail"
+      );
 
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     await handleRegister();
@@ -89,11 +101,11 @@ const Register = () => {
   return (
     <>
       <section
+        className="h-dvh sm:h-dvh lg:h-dvh xl:h-dvh"
         style={{
           backgroundImage:
             "url(https://images.unsplash.com/photo-1534258936925-c58bed479fcb?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
           width: "screen",
-          height: "100%",
         }}
       >
         <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
@@ -221,20 +233,16 @@ const Register = () => {
                 Sign up with Google
               </button>
               <button
+                onClick={() => signInWithgithub()}
                 type="button"
                 className="relative inline-flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
               >
-                <span className="mr-2 inline-block">
-                  <svg
-                    className="h-6 w-6 text-[#2563EB]"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path d="M13.397 20.997v-8.196h2.765l.411-3.209h-3.176V7.548c0-.926.258-1.56 1.587-1.56h1.684V3.127A22.336 22.336 0 0 0 14.201 3c-2.444 0-4.122 1.492-4.122 4.231v2.355H7.332v3.209h2.753v8.202h3.312z"></path>
-                  </svg>
-                </span>
-                Sign in with Facebook
+                <img
+                  className="h-6 w-6 mr-2"
+                  src="https://static-00.iconduck.com/assets.00/social-github-icon-256x250-yv67pnv6.png"
+                  alt=""
+                />
+                Sign in with Github
               </button>
             </div>
           </div>

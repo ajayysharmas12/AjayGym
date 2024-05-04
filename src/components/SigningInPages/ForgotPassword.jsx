@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { account } from "../../appwrite/config";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { homeContext } from "../Layout/Layout";
 function ForgotPassword() {
+  const { toast, Bounce, ToastContainer } = useContext(homeContext);
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
   const handleResetPassword = async (e) => {
     e.preventDefault();
     try {
@@ -10,6 +13,19 @@ function ForgotPassword() {
         email,
         "https://fitness-app-souptik018.vercel.app/resetpassword"
       );
+      toast.success("Reset link sent to your email", {
+        position: "top-right",
+        autoClose: 2200,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
+      setTimeout(() => {
+        navigate("/login");
+      }, 2800);
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -163,6 +179,7 @@ function ForgotPassword() {
               </div>
             </div>
           </div>
+          <ToastContainer />
         </div>
       </div>
     </>
