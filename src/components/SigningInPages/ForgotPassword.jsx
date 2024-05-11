@@ -26,7 +26,7 @@ function ForgotPassword() {
       setTimeout(() => {
         navigate("/login");
       }, 2800);
-      console.log(response);
+      // console.log(response);
     } catch (error) {
       console.log(error);
     }

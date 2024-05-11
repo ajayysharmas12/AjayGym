@@ -8,10 +8,10 @@ import { NavLink } from "react-router-dom";
 function Homepage() {
   const { Loader, accountName, ToastContainer } = useContext(homeContext);
   const [HomeAccountName, setHomeAccountName] = useState();
-  console.log("name of account ", accountName);
+  // console.log("name of account ", accountName);
   const checkAccountName = () => {
     setHomeAccountName(accountName);
-    console.log(accountName);
+    // console.log(accountName);
   };
 
   useEffect(() => {

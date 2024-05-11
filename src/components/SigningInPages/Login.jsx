@@ -83,7 +83,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     handleLogin();
-    console.log("Email:", email);
+    // console.log("Email:", email);
   };
 
   return (
