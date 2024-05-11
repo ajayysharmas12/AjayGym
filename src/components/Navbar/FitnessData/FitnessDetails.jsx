@@ -4,7 +4,7 @@ import { database } from "../../../appwrite/config";
 import { homeContext } from "../../Layout/Layout";
 
 function FitnessDetails() {
-  const { emailName, toast, Bounce } = useContext(homeContext);
+  const { emailName, toast, Bounce, ToastContainer } = useContext(homeContext);
   const [formData, setFormData] = useState({
     bmi: "",
     bfp: "",
@@ -48,20 +48,20 @@ function FitnessDetails() {
           }
         );
         console.log(response);
-      } catch (error) {
-        console.log(error);
-      } finally {
         toast.success("Data saved successfully", {
           position: "top-right",
           autoClose: 2800,
           hideProgressBar: false,
           closeOnClick: true,
-          pauseOnHover: true,
+          // pauseOnHover: true,
           draggable: true,
           progress: undefined,
           theme: "dark",
           transition: Bounce,
         });
+      } catch (error) {
+        console.log(error);
+      } finally {
         setFormData({
           bmi: "",
           bfp: "",
@@ -210,6 +210,7 @@ function FitnessDetails() {
             </form>
           </div>
         </div>
+        <ToastContainer />
       </div>
     </>
   );

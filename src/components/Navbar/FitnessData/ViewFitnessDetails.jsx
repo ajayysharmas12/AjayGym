@@ -28,7 +28,9 @@ function ViewFitnessDetails() {
     const fetchData = async () => {
       try {
         if (accountEmail) {
-          const response = await database.listDocuments(dbId, dbCollectionId);
+          const response = await database.listDocuments(dbId, dbCollectionId, [
+            Query.equal("email", [accountEmail]),
+          ]);
           const updatedElement =
             response.documents[response.documents.length - 1];
           const convertData = JSON.parse(updatedElement.formData);
