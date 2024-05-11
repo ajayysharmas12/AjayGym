@@ -26,7 +26,7 @@ function Navbar() {
   const handleLogout = async () => {
     try {
       const loggingOUT = await account.deleteSession("current");
-      console.log(loggingOUT);
+      // console.log(loggingOUT);
       setaccountName(null);
       toast.success("Resting time!! ", {
         position: "top-right",
