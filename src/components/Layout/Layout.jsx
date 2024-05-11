@@ -27,8 +27,8 @@ function Layout() {
   }, []);
 
   useEffect(() => {
-    console.log(accountName);
-    console.log(emailName);
+    // console.log(accountName);
+    // console.log(emailName);
     isLoggedIn();
   }, [accountName, emailName]);
 

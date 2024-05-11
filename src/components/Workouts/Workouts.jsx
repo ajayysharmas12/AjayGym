@@ -3,7 +3,7 @@ import WorkoutItems from "./WorkoutItems";
 
 function Workouts() {
   const [formData, setFormData] = useState([]);
-  console.log(formData);
+  // console.log(formData);
   function getData(e) {
     setFormData(e);
   }

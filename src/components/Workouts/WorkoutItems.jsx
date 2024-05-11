@@ -92,7 +92,7 @@ function WorkoutItems({ getData }) {
               required
               name="Muscles"
               placeholder="Muscle Group"
-              value={searchParams.Muscles}
+              value={searchParams.Muscles.toLowerCase()}
               onChange={handleInputChange}
               className="border rounded-md p-2 m-2 w-full sm:w-auto"
             />

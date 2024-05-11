@@ -25,8 +25,8 @@ function Mentorship() {
               </p>
             </div>
             <div className="mt-8 w-full space-y-4 md:mt-12">
-              <div className="grid space-y-8 lg:grid-cols-3 lg:space-x-8 lg:space-y-0">
-                <div className="hover:border-blue-800  hover:scale-110 transform transition hover:bg-gray-400 duration-500  rounded-3xl border  border-gray-200 bg-white shadow">
+              <div className="grid space-y-8 lg:grid-cols-3 lg:space-x-8 lg:space-y-0 ">
+                <div className="hover:border-blue-800  hover:scale-105 transform transition hover:bg-gray-400 duration-500  rounded-3xl border  border-gray-200 bg-white shadow">
                   <div className="flex w-full flex-col justify-start space-y-4 px-8 pt-10">
                     <p className="text-4xl font-bold leading-10">₹3500/mth</p>
                     <div className="flex w-full flex-col items-start justify-start space-y-1">
@@ -185,7 +185,7 @@ function Mentorship() {
                     </div>
                   </div>
                 </div>
-                <div className="hover:border-blue-800  hover:scale-110 transform transition hover:bg-gray-400 duration-500 rounded-3xl border border-gray-200 bg-white shadow">
+                <div className="hover:border-blue-800  hover:scale-105 transform transition hover:bg-gray-400 duration-500 rounded-3xl border border-gray-200 bg-white shadow">
                   <div className="flex w-full flex-col justify-start space-y-4 px-8 pt-10">
                     <p className="text-4xl font-bold leading-10">₹5500/mth</p>
                     <div className="flex w-full flex-col items-start justify-start space-y-1">
@@ -324,7 +324,7 @@ function Mentorship() {
                     </div>
                   </div>
                 </div>
-                <div className=" rounded-3xl border hover:border-blue-800  hover:scale-110 transform transition hover:bg-gray-400 duration-500 border-gray-200 bg-white shadow">
+                <div className=" rounded-3xl border hover:border-blue-800  hover:scale-105 transform transition hover:bg-gray-400 duration-500 border-gray-200 bg-white shadow">
                   <div className="flex  w-full flex-col justify-start space-y-4 px-8 pt-10">
                     <p className="text-4xl font-bold leading-10">₹8500/mth</p>
                     <div className="flex w-full flex-col items-start justify-start space-y-1">
