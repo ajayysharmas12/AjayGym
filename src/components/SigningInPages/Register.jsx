@@ -19,12 +19,12 @@ const Register = () => {
         password,
         username
       );
-      console.log(response);
+      // console.log(response);
       const loggedIn = await account.createEmailPasswordSession(
         email,
         password
       );
-      console.log(loggedIn);
+      // console.log(loggedIn);
       await account.createVerification(
         "https://fitness-app-souptik018.vercel.app/verification"
       );
