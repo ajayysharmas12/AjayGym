@@ -74,7 +74,7 @@ function Login() {
         "https://fitness-app-souptik018.vercel.app/home",
         "https://fitness-app-souptik018.vercel.app/fail"
       );
-      console.log(response);
+      // console.log(response);
     } catch (error) {
       console.log(error);
     }
