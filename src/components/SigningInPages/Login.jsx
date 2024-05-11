@@ -31,7 +31,7 @@ function Login() {
         theme: "dark",
         transition: Bounce,
       });
-      console.log(account.get());
+      // console.log(account.get());
       setTimeout(() => navigate("/home"), 2800);
     } catch (error) {
       console.error(error.message);
@@ -62,7 +62,7 @@ function Login() {
         "https://fitness-app-souptik018.vercel.app/home",
         "https://fitness-app-souptik018.vercel.app/fail"
       );
-      console.log(response);
+      // console.log(response);
     } catch (error) {
       console.log(error);
     }
