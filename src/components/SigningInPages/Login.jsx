@@ -205,7 +205,7 @@ function Login() {
                 >
                   <img
                     className="h-6 w-6 mr-2"
-                    src="https://static-00.iconduck.com/assets.00/social-github-icon-256x250-yv67pnv6.png"
+                    src="https://img.icons8.com/?size=256&id=s1rwrv9mNnN4&format=png"
                     alt=""
                   />
                   Sign in with Github
